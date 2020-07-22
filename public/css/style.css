@@ -1,0 +1,738 @@
+:root {
+  /* --primary: #1A4314;
+  --secondary: #B2D2A4;
+  --tertiary: rgb(55, 124, 30);
+  --quaternary: rgb(89, 124, 19); */
+
+  --primary: #1A4314;
+  --secondary: #B2D2A4;
+  --tertiary: #377c1e;
+  --quaternary: #597c13;
+  --quinary: #f9f9f9;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  overflow-x: hidden; /* hide the off-screen navbars */
+  overflow-y: auto;
+  font-family: 'Poppins', sans-serif;
+  font-size: 16px;
+}
+
+
+
+
+/***************************** 
+  styling the nav and sidebars
+******************************/
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 8vh;
+  background-color: var(--primary);
+}
+
+#map {
+  width: 100vw;
+  height: 92vh;
+  background-color: var(--secondary);
+  box-sizing: initial; /* suggested by google */
+  z-index: 0;
+}
+
+.logo {
+  color: var(--secondary);
+  font-size: 1.4em;
+  padding: 0;
+  margin-top: 1vh;
+  line-height: 18px;
+  margin-left: 5vw;
+}
+
+.logo a {
+  color: var(--secondary);
+  text-decoration: none;
+}
+
+.logo span:first-child {
+  font-weight: 500;
+}
+
+.logo span:nth-child(2) {
+  font-weight: 900;
+}
+
+.logo span:last-child {
+  font-size: 0.5em;
+  font-weight: 300;
+  padding: 0;
+  margin: 8px 10px 10px 3px;
+  letter-spacing: 0.18em;
+}
+
+.burger {
+  cursor: pointer;
+  margin-right: 4vw;
+}
+
+.burger div {
+  width: 25px;
+  height: 2px;
+  background-color: var(--secondary);
+  margin: 6px 0;
+  transition: all 0.3s ease;
+}
+
+/* toggle the .toggle to move the burger menu when clicked */ 
+.toggle .line1 {
+  transform: translateY(8px) rotate(-45deg);
+}
+
+.toggle .line2 {
+  opacity: 0;
+}
+
+.toggle .line3 {
+  transform: translateY(-8px) rotate(45deg);
+}
+/* end of burger menu animation by JavaScript */
+
+.bar {
+  position: absolute;
+  max-height: 91vh;
+  top: 9vh;
+  width: 100%;
+  max-width: min(90vw, 340px);
+  
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  transition: transform 0.5s ease-in-out;
+}
+
+.primary-bar { 
+  right: 0;
+  background-color: var(--primary);
+  transform: translateX(100%);    
+  padding: 30px;
+  font-size: 0.8em;
+  color: var(--secondary);
+  z-index: 30;
+}
+
+/* moves the side bar on and off by JavaScript when clicked the barger menu */
+.primary-bar-active {
+  transform: translateX(-1vh);
+}
+
+#primary-bar-nav {
+  display: flex;
+  justify-content: center;
+}
+
+.nav-item {
+  background-color: var(--tertiary);
+  margin-right: 2px;
+  padding: 10px 20px;
+  text-align: center;
+  cursor: pointer;
+}
+
+#primary-bar-nav-transit .nav-item { margin-right: 0; }
+
+.nav-item:hover,
+.nav-item.active {
+  background-color: var(--secondary);
+  color: var(--primary);
+  font-weight: 600;
+}
+
+.nav-item img {
+  width: 20px;
+}
+
+.display-bar { 
+  left: 0;
+  padding: 0;
+  background-color: transparent;
+  transform: translateX(-100%); /* move off screen */    
+  z-index: 20;
+  font-size: 0.9em;
+  overflow-y: auto;
+}
+
+.display-bar .slide-button {
+  background-image: url(../assets/icons/slide-back-black.svg);
+  background-size: 25px;
+  background-repeat: no-repeat;
+  background-position: 98% 2%;
+
+  width: 25px;
+  height: 25px;
+  z-index: 100;
+  position: absolute;
+  right: 10px;
+  top: 10px;
+}
+
+.display-bar .slide-button:hover {
+  background-image: url(../assets/icons/slide-back-white.svg);
+  cursor: pointer;
+}
+
+.display-bar-active {
+  transform: translateX(1vh);
+}
+
+/* .display-bar::-webkit-scrollbar { */
+.bar::-webkit-scrollbar {
+  width: 11px;
+}
+
+/* .display-bar { */
+.bar {
+  scrollbar-width: thin;
+  scrollbar-color: var(--primary) var(--secondary);
+}
+
+/* .display-bar::-webkit-scrollbar-track { */
+.bar::-webkit-scrollbar-track {
+  background: var(--scrollbarBG);
+}
+
+/* .display-bar::-webkit-scrollbar-thumb { */
+.bar::-webkit-scrollbar-thumb {
+  background-color: var(--primary) ;
+  border-radius: 6px;
+  border: 3px solid var(--scrollbarBG);
+}
+
+
+
+
+/* styling the forms on the right sidebar */
+
+form {
+  background-color: var(--secondary); 
+  color: var(--primary);
+  margin-bottom: 10px;
+  text-align: left;
+  width: 100%;
+  padding: 10px 30px 20px;
+  /* text-align: center; */
+  
+  /* display: none;  */ /* Laravel Auth*/
+  flex-direction: column; 
+  align-items: flex-start;
+}
+
+#train-form { display: flex; }
+
+button, input, select, textarea {
+  font-family: inherit;
+  font-size: 100%;
+  -webkit-appearance: none; 
+  appearance: none;
+}
+
+input { 
+  padding: 5px 10px; 
+  width: 100%; 
+  margin-top: 5px;
+  border: 2px solid var(--tertiary);
+  border-radius: 4px;
+}
+
+button {
+  border: none;
+  background-color: var(--tertiary); 
+  color: var(--secondary);
+  border-radius: 3px;
+  box-shadow: 2px 4px 5px rgba(0, 0, 0, 0.2);
+  /* font-size: 1.2em; */
+}
+
+button:hover { 
+  background-color: var(--primary);
+  cursor: pointer;
+}
+
+label { margin-top: 15px; font-weight: bold; }
+
+form button { 
+  padding: 20px 30px; 
+  margin-top: 20px;
+}
+
+form div {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* checkbox styling */
+.checkbox input[type="checkbox"] {
+  opacity: 0;
+}
+
+.checkbox label::before {
+  content: "";
+  display: inline-block;
+
+  height: 16px;
+  width: 16px;
+  border: 1px solid var(--primary);
+}
+
+.checkbox label::after {
+  content: "";
+  display: inline-block;
+
+  height: 6px;
+  width: 9px;
+  border-left: 2px solid var(--primary);
+  border-bottom: 2px solid var(--primary);
+
+  transform: rotate(-45deg);
+}
+
+.checkbox label {
+  position: relative;
+  margin-left: 25px;
+  
+}
+.checkbox label::before,
+.checkbox label::after {
+  position: absolute;
+  left: -25px;
+  color: var(--primary);
+
+}
+
+.checkbox label::before {
+  top: -1px;
+  background-color: white;
+  border-radius: 4px;
+}
+
+.checkbox label::after {
+  left: -22px;
+  top: 2px;
+}
+
+/*Hide the checkmark by default*/
+.checkbox input[type="checkbox"] + label::after {
+  content: none;
+}
+
+/*Unhide the checkmark on the checked state*/
+.checkbox input[type="checkbox"]:checked + label::after {
+  content: "";
+}
+
+/*Adding focus styles on the outer-box of the fake checkbox*/
+.checkbox input[type="checkbox"]:focus + label::before {
+  outline: rgb(59, 153, 252) auto 5px;
+}
+
+/* end of checkbox styling */
+
+
+/* laravel authentication */
+.auth-container {
+  height: 92vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#auth-form .card-header {
+  text-align: center;
+  font-size: 1.4em;
+  font-weight: bold;
+  text-transform: uppercase;
+  padding: 10px;
+  margin-bottom: 5px;
+  color: var(--primary);
+}
+
+#auth-form {
+  max-width: min(70vw, 400px);
+  width: 100%;
+  font-size: 0.8em;
+}
+
+#auth-form button {
+  max-width: 150px;
+  font-size: 1.2em;
+ 
+}
+
+#auth-form #reset-button {
+  max-width: 100% !important;
+}
+
+#auth-form a {
+  margin-top: 20px;
+  text-decoration: none;
+  padding-bottom: 4px;
+  color: var(--primary);
+}
+
+#auth-form .invalid-feedback {
+  color: red;
+}
+
+#auth-user {
+  width: 100%;
+  background-color: var(--secondary);
+  padding: 20px;
+  text-align: right;
+}
+
+#auth-user #user-info {
+  display: inline-block;
+  color: var(--primary);
+  font-weight: bold;
+}
+
+#auth-user #user-info .karma { 
+  font-weight: normal;
+  font-size: 0.85em; 
+  margin-bottom: 10px;
+}
+
+#auth-user a { 
+  text-decoration: none; 
+  color: var(--primary);
+  margin-left: 5px;
+  padding-bottom: 4px;
+  border-bottom: 1px solid;
+}
+
+#auth-user a:hover,
+#auth-form a:hover { 
+  /* padding-bottom: 1px;
+  border-bottom: 2px solid; */
+  font-weight: bold;
+}
+
+/* end of laravel auth */
+
+
+/* end of styling the nav and sidebars */
+/* *********************************** */
+
+
+/* ******************************************* */
+/* common properties in info window & info bar */
+
+.train {
+  background-image: url(../assets/icons/clock-dark.svg);
+  background-repeat: no-repeat;
+  background-size: 1.1em;
+  background-position: 5px 5px; /* ? */
+  margin-top: 0px;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  line-height: 1.7;
+}
+
+.train:hover {
+  background-color: var(--primary);
+  background-image: url(../assets/icons/clock-light.svg);
+  color: var(--quinary);
+  cursor: pointer;
+}
+
+.info-window .train {
+  margin-left: 40px;
+  padding-left: 25px;
+  font-size: 0.9em;
+}
+
+/* need to remove when functionality added to display station details
+   when clicked any station name on the info window */
+.info-window .train:hover {
+  background-color: white;
+  cursor: text;
+  background-image: url(../assets/icons/clock-dark.svg);
+  color: var(--primary);
+}
+
+.bar-info .train { padding-left: 25px; }
+
+.ungrouped .train { 
+  border-bottom: 1px solid var(--primary); 
+  padding-top: 8px;
+  padding-bottom: 5px;
+  background-position: 5px 10px;
+}
+
+.ungrouped .train:last-child {
+  border-bottom: none;
+}
+
+.time, .train-no { padding: 1px 5px; color: white; }
+.time { background-color: var(--quaternary); }
+.train-no { background-color: var(--tertiary); }
+
+/* end of common properties in info window & info bar */
+/* ************************************************** */
+
+/* ****************************** */
+/* styling the station schedule */
+
+.bar-info {
+  /* max-width: 360px; */
+  width: 100%;
+  padding: 0;
+  background-color: var(--tertiary);
+  font-size: 0.8em;
+  margin-bottom: 20px;
+}
+
+.bar-info h4 { margin-top: 10px; margin-bottom: 10px; }
+.bar-info h5 { font-weight: normal; margin-bottom: 15px; }
+.bar-info span { font-weight: 600; }
+
+.bar-info .header {
+    position: relative;
+    left: -0px;
+    top: -0px;
+    /* width: calc(100% + 0px); */
+    height: 202px;
+    padding: 0 20px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+
+    color: var(--quinary);
+    background-size: cover;
+    background-position: top left;
+}
+
+.bar-info .station-photo-credit {
+  background-color: black;
+  color: var(--quinary);
+  font-size: 0.8em;
+  padding: 8px 20px;
+}
+
+.bar-info .station-photo-credit.blank {
+  background-image: url(../assets/icons/information.svg);
+  background-repeat: no-repeat;
+  background-size: 17px;
+  background-position: 17px 8px;
+  padding-left: 39px;
+}
+
+.bar-info .group,
+.bar-info .ungrouped {
+  background-color: var(--quinary);
+  color: var(--primary);
+  margin-top: 2px;
+}
+
+.transit-info h4 { margin-top: 18px; }
+.station-schedule h4 { 
+  background-image: url(../assets/icons/location.svg);
+  background-repeat: no-repeat;
+  background-position: 6px 0px;
+  background-size: 10px;
+  padding-left: 23px;
+}
+
+.bar-info .group { padding: 10px 20px; }
+.bar-info .ungrouped { padding: 10px 15px; } 
+
+.bar-info .day-off {
+  display: block;   
+  background-image: url(../assets/icons/no-entry.svg);
+  background-repeat: no-repeat;
+  background-size: 12px;
+  background-position: 0 2px;
+  padding-left: 15px;
+  font-weight: normal!important; /* to-do: change to squire icon*/
+}
+
+
+/* advert spaces */
+.advert-space {
+  height: 100px;
+  text-align: left;
+  background-color: var(--quinary);
+  color: var(--primary);
+  margin-top: 2px;
+  padding: 20px 20px;
+}
+
+.advert-space .sponsor {
+  font-size: 1.3em;
+  font-weight: bold;
+}
+
+
+/* *********************** */
+/* styling the info window */
+
+/* reset the default popup window properties of Leaflet */
+/* .leaflet-popup { z-index: 5000 !important; } */
+.leaflet-popup-content {
+  margin: 0 !important;
+  padding: 0 !important;
+  z-index: 5000;
+}
+
+.leaflet-popup-content p { margin: 0 !important;  } 
+
+.info-window {
+  width: 100%;
+  padding: 20px 20px;
+  background-color: #ffffff;
+  z-index: 50;
+  
+}
+
+.info-window * { background-repeat: no-repeat; background-size: 15px; }
+
+.info-window h3,
+.info-window h4,
+.info-window h5,
+.info-window p {
+  margin-left: 40px !important;
+}
+
+.info-window h3 { font-size: 1.4em;}
+.info-window h4 { margin-top: 10px; font-size: 1.15em; }
+.info-window h5 { font-weight: normal; font-size: 1em;}
+.info-window p { font-size: 1em; line-height: 1.6em;  }
+.info-window .train { font-size: 1em; }
+.info-window span { font-weight: bold; }
+.info-window button { font-size: 1em; }
+
+.info-window .current-train {
+  background-position: 0 2px;
+  background-size: 30px;
+}
+
+.info-window .current-train.green { background-image: url(../assets/icons/train-green.svg); }
+.info-window .current-train.white { background-image: url(../assets/icons/train-white.svg); }
+.info-window .current-train.blue { background-image: url(../assets/icons/train-blue.svg); }
+
+.info-window .current-station {
+  background-image: url(../assets/icons/location.svg);
+  background-position: 15px 0px;
+}
+
+.info-window .train { 
+  background-size: 14px; 
+  padding-top: 1px; /* remove when hover functionality added */
+  padding-bottom: 0px; /* remove when hover functionality added */
+}
+
+.info-window .day-off {
+  background-image: url(../assets/icons/no-entry.svg);
+  background-position: 15px 10px;
+}
+
+.info-window .day-off > * { display: inline-block; }
+
+.info-window .train-classes {
+  background-image: url(../assets/icons/ticket.svg);
+  background-position: 15px 2px;
+}
+
+.info-window .train-food {
+  background-image: url(../assets/icons/food.svg);
+  background-position: 15px 3px;
+}
+
+.info-window .info-controls { margin-left: 20px; margin-top: 20px; }
+
+.info-window button {
+  border: none;
+  padding: 5px 20px;
+  background-color: var(--tertiary); 
+  color: #fff;
+}
+
+.info-window button:hover { 
+  background-color: var(--primary);
+  cursor: pointer;
+}
+
+/* end of styling the info window */
+/* ****************************** */
+
+
+/* ************************** */
+/* watermark div styling */
+.branding {
+  position: absolute;
+  top: 60vh;
+  left: calc(45vw - 140px);
+  opacity: 0.4;
+  width: 310px;
+  height: 40px;
+  padding: 10px 0px 10px 20px;
+  background-color: var(--primary);
+  color: white;
+  z-index: 1;
+  margin: auto;
+  pointer-events: none;
+}
+
+
+
+
+
+
+
+@media screen and (max-width: 600px) {
+  .logo {
+    font-size: 1.4em;
+  }
+
+  .bar {
+    width: 100%;
+    max-width: min(90vw, 360px);
+  }
+
+  .primary-bar-active {
+    transform: translateX(0);
+  }
+  
+  .display-bar-active {
+    transform: translateX(0);
+  }
+} 
+
+
+
+/*************************/
+/*  styling the info window */
+
+
+
+/* .gm-style-iw.gm-style-iw-c,
+.gm-style-iw-d {
+  max-height: 80vh !important;
+}
+
+.info-window-content {
+  width: min(320px, 90vw);
+  background-color: #fff;
+  padding: 5px 15px 10px 5px;
+  font-size: 13px;
+  color: var(--primary);
+} */
