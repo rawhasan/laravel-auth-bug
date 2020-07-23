@@ -18,7 +18,7 @@ to display authentication links on the sidebar for everyone -->
       </a> -->
 
       <div id="user-info">
-        {{ Auth::user()->name }} <div class="karma">Karma Score: 0</div>
+        {{ Auth::user()->name }} <div class="karma">Karma Score: {{ Auth::user()->karma_score }}</div>
       </div>
 
       <div class="">
