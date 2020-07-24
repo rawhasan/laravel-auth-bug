@@ -19,5 +19,12 @@ Route::get('/', function () {
 
 Auth::routes();
 
-// Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/railway', 'RailwayController@index')->name('railway');
+// // Route::get('/home', 'HomeController@index')->name('home');
+
+// Route::get('/railway', 'RailwayController@index')->name('railway');
+// Route::get('/admin', 'AdminController@index')->name('admin')->middleware('admin');
+
+Route::middleware(['auth'])->group(function () {
+  Route::get('/railway', 'RailwayController@index')->name('railway');
+  Route::get('/admin', 'AdminController@index')->name('admin')->middleware('admin');
+});
